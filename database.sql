@@ -6,6 +6,12 @@ CREATE TABLE "categories" (
   "name" VARCHAR (100) NOT NULL
 );
 
+CREATE TABLE "favorites" (
+  "id" SERIAL PRIMARY KEY,
+  "url" VARCHAR (100) NOT NULL,
+  "category" VARCHAR (100) NOT NULL
+);
+
 -- Default categories. You may change these. 🙂
 INSERT INTO "categories"
   ("name")
@@ -17,6 +23,10 @@ INSERT INTO "categories"
   ('whimsical');
 
 -- Favorites table:
+INSERT INTO "favorites"
+("url", "category")
+VALUES
+('www.google.com', 'wild');
 
 -- You'll need a "favorites" table for storing each instance of
 -- a Giphy image that has been "favorited."
@@ -24,3 +34,12 @@ INSERT INTO "categories"
 -- categories via foreign key. This is a one-to-many relationship:
 --    One favorite has one category.
 --    One category can be had by many favorites.
+
+
+/*
+CREATE TABLE "favorites_category"(
+id SERIAL PRIMARY KEY,
+category_id INT REFERENCES "categories",
+favorite_id INT REFERENCES "favorites");
+*/
+
