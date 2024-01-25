@@ -6,8 +6,8 @@ const router = express.Router();
 
 const api_key = process.env.MY_API_KEY
 
-const searchQuery = 'dog'
-const searchLimit = '1'
+const searchQuery = 'cat'
+const searchLimit = '3'
 
 
 router.get('/', (req,res) => {
