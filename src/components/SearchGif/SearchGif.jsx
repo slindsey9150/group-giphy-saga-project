@@ -15,29 +15,15 @@ function SearchGifs () {
 
 
     const dispatch = useDispatch()
-  
+
+    //     let searchElement = ''
+    //     const handleSubmit = (event) => {
+    //         event.preventDefault()
+    //          searchElement = document.getElementById('searchField').value
+    //         console.log('searchElement:', searchElement);
+    //         dispatch({type:'SET_SEARCH', payload:searchElement})
    
-        const SearchGif = () => {
-            console.log('I\'m a gif');
-            console.log("gifImage 2:", gifImage);
-
-
-        
-            dispatch({type:'FETCH_GIFS'})
-        
-         
-            console.log("gifImage 2:", gifImage);
-
-        } 
-
-        let searchElement = ''
-        const handleSubmit = (event) => {
-            event.preventDefault()
-             searchElement = document.getElementById('searchField').value
-            console.log('searchElement:', searchElement);
-            dispatch({type:'SET_SEARCH', payload:searchElement})
-   
-    }
+    // }
 
   
 
@@ -60,10 +46,10 @@ function SearchGifs () {
         <>
         <h3>Gifs loading . . .</h3>
 
-        <form onSubmit = {handleSubmit}>
+        {/* <form onSubmit = {handleSubmit}>
             <input id='searchField' type="text" />
             <button>Search</button>
-        </form>
+        </form> */}
         
         {/* {<img src={gifImage.data[0].images.original.url}/>} */}
        
