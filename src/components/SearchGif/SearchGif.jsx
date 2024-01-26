@@ -1,31 +1,41 @@
-import axios from "axios"
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, Fragment, useState } from 'react'
 
 
 
 function SearchGifs () {
-    const gifImage = useSelector(store => store.gifSearchReducer)
+    
 
  
 
-    const gifFav = useSelector(store => store.gifFavReducer)
+    // const gifFav = useSelector(store => store.gifFavReducer)
     // const gifPath = gifImage[0].images.original.url
+    // let gifImageArray = gifImage.data
+    const dispatch = useDispatch()
+    const gifImage = useSelector(store => store.gifSearchReducer)
     let gifImageArray = gifImage.data
 
 
-    const dispatch = useDispatch()
 
-    //     let searchElement = ''
-    //     const handleSubmit = (event) => {
-    //         event.preventDefault()
-    //          searchElement = document.getElementById('searchField').value
-    //         console.log('searchElement:', searchElement);
-    //         dispatch({type:'SET_SEARCH', payload:searchElement})
+        let searchElement = ''
+        let imgRender = {}
+    const handleSubmit = (event) => {
+            event.preventDefault()
+            //added gifFav to handleSubmit to only have it render after the Submit
+        console.log("gifImage", gifImage);
+            // let gifImageArray = gifImage.data
+             searchElement = document.getElementById('searchField').value
+            console.log('searchElement:', searchElement);
+            dispatch({type:'SEARCH_GIF', payload:searchElement})
+            
+            
+      
    
-    // }
+    }
 
-  
+    useEffect(() => {
+        SearchGif()
+    }, [])
 
     const SearchGif = () => {
         console.log('I\'m a gif');
@@ -44,31 +54,23 @@ function SearchGifs () {
  
     return (
         <>
+
+        
+       
         <h3>Gifs loading . . .</h3>
 
-        {/* <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit}>
             <input id='searchField' type="text" />
             <button>Search</button>
-        </form> */}
-        
-        {/* {<img src={gifImage.data[0].images.original.url}/>} */}
-       
 
-        
-
-        {/* <pre>{gifImageArray.map((giphy, i) => {
-            return (
-                <Fragment key = {i}>
-                    <p>{giphy.data.url}</p>
-                </Fragment>
-            )
-        })}</pre> */}
-         <pre>{gifImageArray.map((giphy, i) => {
+            
+        </form>
+        <pre>{gifImageArray?.map((giphy, i) => {
                 return (
-                <Fragment key={i}>
-                <img id={giphy.id} src ={giphy.images.original.url}/>
-                <button onClick = {(event) => {addGif(event)}}>Wild!</button>
-                </Fragment>
+                    <Fragment key={i}>
+                    <img id={giphy.id} src ={giphy.images.original.url}/>
+                    <button onClick = {(event) => {addGif(event)}}>Wild!</button>
+                    </Fragment>
                 )
             })}</pre>
 

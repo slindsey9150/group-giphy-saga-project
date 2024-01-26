@@ -3,7 +3,7 @@ const axios = require('axios');
 require('dotenv').config();
 const router = express.Router();
 const api_key = process.env.MY_API_KEY
-const searchLimit = '3'
+const searchLimit = '10'
 
 function getGiffs () {
     // console.log('store', store);
@@ -15,7 +15,7 @@ getGiffs()
 router.get('/', (req,res) => {
     // const store = useSelector(store => store.searchElement)
     // let searchQuery = store
-    let searchQuery = 'cat'
+    let searchQuery = req.body
     console.log('searchQuery;', searchQuery);
 
     // console.log('store', store);
