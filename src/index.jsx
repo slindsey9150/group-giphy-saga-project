@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App.jsx';
-import { applyMiddleware, combineReducers, createStore } from 'redux'
-import logger from 'redux-logger'
 import { Provider } from 'react-redux'
+
+import store from './redux/store.js'
+
 import createSagaMiddleware from 'redux-saga'
 import { takeLatest, put } from 'redux-saga/effects'
 import axios from 'axios'
@@ -67,12 +68,15 @@ sagaMiddleware.run(rootSaga)
 
 
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 
 root.render(
   <React.StrictMode>
-    <Provider store= {storeInstance}>
+    <Provider store= {store}>
     <App />
     </Provider>
   </React.StrictMode>
 );
+

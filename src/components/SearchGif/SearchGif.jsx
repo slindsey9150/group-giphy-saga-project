@@ -6,16 +6,40 @@ import { useEffect, Fragment, useState } from 'react'
 
 function SearchGifs () {
     const gifImage = useSelector(store => store.gifSearchReducer)
+
+ 
+
     const gifFav = useSelector(store => store.gifFavReducer)
     // const gifPath = gifImage[0].images.original.url
     let gifImageArray = gifImage.data
-//  console.log('gifImmageArray', gifImageArray);
-    // console.log("gifImage:", gifImage);
+
 
     const dispatch = useDispatch()
-    useEffect(() => {
-        SearchGif()
-    }, [])
+  
+   
+        const SearchGif = () => {
+            console.log('I\'m a gif');
+            console.log("gifImage 2:", gifImage);
+
+
+        
+            dispatch({type:'FETCH_GIFS'})
+        
+         
+            console.log("gifImage 2:", gifImage);
+
+        } 
+
+        let searchElement = ''
+        const handleSubmit = (event) => {
+            event.preventDefault()
+             searchElement = document.getElementById('searchField').value
+            console.log('searchElement:', searchElement);
+            dispatch({type:'SET_SEARCH', payload:searchElement})
+   
+    }
+
+  
 
     const SearchGif = () => {
         console.log('I\'m a gif');
@@ -29,9 +53,21 @@ function SearchGifs () {
         dispatch({type: 'ADD_GIF', payload})        
     }
 
+
+  
+ 
     return (
         <>
         <h3>Gifs loading . . .</h3>
+
+        <form onSubmit = {handleSubmit}>
+            <input id='searchField' type="text" />
+            <button>Search</button>
+        </form>
+        
+        {/* {<img src={gifImage.data[0].images.original.url}/>} */}
+       
+
         
 
         {/* <pre>{gifImageArray.map((giphy, i) => {
@@ -49,6 +85,7 @@ function SearchGifs () {
                 </Fragment>
                 )
             })}</pre>
+
         
         </>
     ) 
