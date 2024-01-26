@@ -20,6 +20,14 @@ const gifSearchReducer = (state = [], action) => {
         return state;
   }
 }
+const gifFavReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'ADD_GIF' :
+      return action.payload;
+      default:
+        return state;
+}
+}
 function* fetchGif(action) {
   console.log('FETCH GIFS:', action);
   try{
@@ -33,7 +41,7 @@ function* fetchGif(action) {
 function* addGif(action) {
   console.log('Add GIFS:', action);
   try{
-      yield axios.post('/api/favorites/')
+      yield axios.post('/api/favorites/', action.payload)
       yield put({type: 'FETCH_GIFS'})
   } catch(error) {
     console.log('error:', error);
@@ -49,7 +57,8 @@ function* rootSaga() {
 
 const storeInstance = createStore (
   combineReducers({
-    gifSearchReducer
+    gifSearchReducer,
+    gifFavReducer
   }),
   applyMiddleware( sagaMiddleware, logger)
 )
